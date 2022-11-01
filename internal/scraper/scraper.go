@@ -18,8 +18,8 @@ type Blog struct {
 	URL string `json:"url"`
 }
 
-// ScapeIskcondesiretree scrapes for https://iskcondesiretree.com
-func ScapeIskcondesiretree() ([]Blog, error) {
+// ScapeIskconDesireTree scrapes for https://iskcondesiretree.com
+func ScapeIskconDesireTree() ([]Blog, error) {
 	// links
 	link1 := "https://iskcondesiretree.com/profiles/blogs/list/tag/lord+krishna"
 	var blogs []Blog
@@ -60,6 +60,13 @@ func ScapeIskcondesiretree() ([]Blog, error) {
 	}
 
 	log.Println("Successfully scraped Iskcon Desire Tree blogs.")
+
+	// Saving scraped data for future references
+	err := SaveScrapedData("blogs-IskconDesireTree.json", blogs)
+	if err != nil {
+		log.Println("Failed to save scraped data")
+	}
+
 	return blogs, nil
 }
 
@@ -72,7 +79,7 @@ type Poetry struct {
 
 // ScapeAllPoetry scrapes for https://allpoetry.com
 func ScapeAllPoetry() ([]Poetry, error) {
-	searchResult, err := Scrape("hare krishna poems allpoetry", "com", "en", 2, 10, 1)
+	searchResult, err := Scrape("hare krishna poems allpoetry", "com", "en", 10, 10, 1)
 	if err != nil {
 		return []Poetry{}, err
 	}
@@ -91,5 +98,10 @@ func ScapeAllPoetry() ([]Poetry, error) {
 	}
 
 	log.Println("Successfully scraped allpoetry.com using Google search")
+	// Saving scraped data for future references
+	err = SaveScrapedData("poetry-AllPoetry.json", poetries)
+	if err != nil {
+		log.Println("Failed to save scraped data")
+	}
 	return poetries, nil
 }

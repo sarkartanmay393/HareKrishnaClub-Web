@@ -19,22 +19,9 @@ var app config.AppConfig
 func main() {
 
 	var err error
-	// var scrapedBlogsChan chan []scraper.Blog
-	// for {
-	// 	go func() {
-	// 		blogs, _ := scraper.ScapeIskcondesiretree()
-	// 		scrapedBlogsChan <- blogs
-	// 	}()
 
-	// }
-	scrapedBlogs, err := scraper.ScapeIskcondesiretree()
-	if err != nil {
-		log.Fatal("scrapedBlogs Failed", err)
-	}
-	scrapedPoetries, err := scraper.ScapeAllPoetry()
-	if err != nil {
-		log.Fatal("scrapedPoetries Failed", err)
-	}
+	// Data from the scraped websites
+	scrapedBlogs, scrapedPoetries := ScrapeNecessaries()
 
 	cache, err := render.CreateTemplateCache()
 	if err != nil {
@@ -59,4 +46,18 @@ func main() {
 	if err != nil {
 		os.Exit(1)
 	}
+}
+
+// ScrapeNecessaries scrapes the necessary data from the websites.
+func ScrapeNecessaries() ([]scraper.Blog, []scraper.Poetry) {
+	scrapedBlogs, err := scraper.ScapeIskconDesireTree()
+	if err != nil {
+		log.Fatal("scrapedBlogs Failed", err)
+	}
+	scrapedPoetries, err := scraper.ScapeAllPoetry()
+	if err != nil {
+		log.Fatal("scrapedPoetries Failed", err)
+	}
+
+	return scrapedBlogs, scrapedPoetries
 }

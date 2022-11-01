@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-// SearchResult holds our scraped data with json annotations.
+// SearchResult holds our scraped scraped-data with json annotations.
 type SearchResult struct {
 	SearchRank  int    `json: rank`
 	SearchURL   string `json: url`
@@ -233,17 +233,17 @@ var UserAgents = []string{
 // Tasks to complete for Scrape function.
 // [✅] build google absolute urls for each page.
 // [✅] build http client, make req, set user agent, return response.
-// [✅] parse data from http.Response using goquery.
-// [✅] return data in a slice of SearchResult.
+// [✅] parse scraped-data from http.Response using goquery.
+// [✅] return scraped-data in a slice of SearchResult.
 
 // Scrape takes what to search, and it does the job and returns us the result.
 func Scrape(SearchTerm, CountryCode, LanguageCode string, Pages, Count, RestSeconds int) ([]SearchResult, error) {
 	var finalResult []SearchResult
 
-	// Building absolute urls to scrape data.
+	// Building absolute urls to scrape scraped-data.
 	absURLs := buildAbsUrls(SearchTerm, CountryCode, LanguageCode, Pages, Count)
 
-	// Loop through all URLs and scrape data from all of them.
+	// Loop through all URLs and scrape scraped-data from all of them.
 	for _, URL := range absURLs {
 		// Getting http response form of each of those abs urls.
 		response, err := getResponseFromClientRequest(URL)
@@ -264,7 +264,7 @@ func Scrape(SearchTerm, CountryCode, LanguageCode string, Pages, Count, RestSeco
 	return finalResult, nil
 }
 
-// parseResponse takes http response that using goquery it parses all necessary data and return a SearchResult object.
+// parseResponse takes http response that using goquery it parses all necessary scraped-data and return a SearchResult object.
 func parseResponse(response *http.Response) ([]SearchResult, error) {
 	var results []SearchResult
 
