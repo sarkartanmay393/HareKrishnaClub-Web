@@ -28,16 +28,21 @@ func main() {
 
 	// }
 	scrapedBlogs, err := scraper.ScapeIskcondesiretree()
-
 	if err != nil {
-		log.Fatal("Scrape Failed", err)
+		log.Fatal("scrapedBlogs Failed", err)
 	}
+	scrapedPoetries, err := scraper.ScapeAllPoetry()
+	if err != nil {
+		log.Fatal("scrapedPoetries Failed", err)
+	}
+
 	cache, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatalln("In main.go", err)
 	}
 
 	app.ScrapedBlogs = &scrapedBlogs
+	app.ScrapedPoetries = &scrapedPoetries
 	app.TemplateCache = cache
 	app.CacheLoaded = true
 	render.AttachConfig(&app)

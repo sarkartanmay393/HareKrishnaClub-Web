@@ -4,11 +4,11 @@
 
     {{ $length := len .ScrapedBlogs }}
     {{$index := -1}}
-    <p class="font-weight-light">({{$length}} <small class="text-muted">Results Found</small>)</p>
+    <p class="font-weight-light float-right text-right">({{$length}} <small class="text-muted">Results Found</small>)</p>
 
     {{range $index, $blog := .ScrapedBlogs}}
         <div class="col">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center ml-2 mr-2">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-4">

@@ -2,21 +2,21 @@
 
 {{define "content"}}
 
-    {{ $length := len .ScrapedBlogs }}
-    <div><a>({{$length}} Results Found)</a></div>
+    {{ $length := len .ScrapedPoetries }}
+    <p class="font-weight-light float-right text-right">({{$length}} <small class="text-muted">Results Found</small>)</p>
 
-    {{range $index, $blog := .ScrapedBlogs}}
+    {{range $index, $blog := .ScrapedPoetries}}
         <div class="col">
             <div class="row justify-content-center">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="{{.CoverImage}}" class="img-fluid rounded-start" alt="...">
+                            <img src="/static/images/krishna.webp" height="64" class="img-fluid mx-auto d-block rounded-start" alt="...">
                         </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title"><a href="{{.URL}}">{{.Title}}</a></h5>
-                            <p class="card-text">{{.Body}}</p>
+
                             <p class="card-text"><small class="text-muted">Last updated 0 mins ago</small></p>
                         </div>
                      </div>
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        {{if eq $index 1}}
+        {{if eq $index 15}}
             {{break}}
         {{end}}
 

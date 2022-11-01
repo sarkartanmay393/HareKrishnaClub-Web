@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gocolly/colly/v2"
 	"log"
+	"strings"
 )
 
 type Blog struct {
@@ -60,4 +61,35 @@ func ScapeIskcondesiretree() ([]Blog, error) {
 
 	log.Println("Successfully scraped Iskcon Desire Tree blogs.")
 	return blogs, nil
+}
+
+type Poetry struct {
+	Title       string `json:"title"`
+	URL         string `json:"url"`
+	CoverImage  string `json:"cover_image"`
+	Description string `json:"description"`
+}
+
+// ScapeAllPoetry scrapes for https://allpoetry.com
+func ScapeAllPoetry() ([]Poetry, error) {
+	searchResult, err := Scrape("hare krishna poems allpoetry", "com", "en", 2, 10, 1)
+	if err != nil {
+		return []Poetry{}, err
+	}
+
+	poetries := []Poetry{}
+	for _, result := range searchResult {
+		if strings.Contains(result.SearchURL, "allpoetry.com") {
+			poetry := Poetry{
+				Title:       result.SearchTitle,
+				URL:         result.SearchURL,
+				Description: result.SearchDesc,
+			}
+
+			poetries = append(poetries, poetry)
+		}
+	}
+
+	log.Println("Successfully scraped allpoetry.com using Google search")
+	return poetries, nil
 }

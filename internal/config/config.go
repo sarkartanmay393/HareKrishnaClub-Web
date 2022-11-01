@@ -7,7 +7,8 @@ import (
 )
 
 type AppConfig struct {
-	CacheLoaded   bool
-	TemplateCache map[string]*template.Template
-	ScrapedBlogs  *[]scraper.Blog
+	CacheLoaded     bool
+	TemplateCache   map[string]*template.Template
+	ScrapedBlogs    *[]scraper.Blog
+	ScrapedPoetries *[]scraper.Poetry
 }
