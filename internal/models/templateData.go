@@ -12,4 +12,5 @@ type TemplateData struct {
 	ErrorMessage   string
 	WarningMessage string
 	ActivePage     string
+	LoadMore       bool
 }

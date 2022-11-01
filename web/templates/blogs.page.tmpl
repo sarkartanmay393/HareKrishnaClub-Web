@@ -4,7 +4,7 @@
 
     {{ $length := len .ScrapedBlogs }}
     {{$index := -1}}
-    <div><a>({{$length}} Results Found)</a></div>
+    <p class="font-weight-light">({{$length}} <small class="text-muted">Results Found</small>)</p>
 
     {{range $index, $blog := .ScrapedBlogs}}
         <div class="col">
@@ -26,15 +26,16 @@
             </div>
         </div>
 
-      {{if eq $index 10}} 
-        {{break}}
-      {{end}}
+        {{if eq $index 10}}
+            {{break}}
+        {{end}}
+
+    {{end}}
+    {{if lt $index $length}}
+        <div class="d-grid gap-2 col-4 mx-auto mb-2 mt-2">
+            <button id="load-more-button" name="load-more-button" class="btn btn-primary" type="button">Load More</button>
+        </div>
     {{end}}
 
-    {{if lt $length $index}}
-      <div class="d-grid gap-2 col-6 mx-auto">
-          <button class="btn btn-primary" type="button">Load More</button>
-      </div>
-    {{end}}
 
 {{end}}
