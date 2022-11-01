@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
+	"os"
+
 	"github.com/sarkartanmay393/HareKrishnaClub-Web/internal/config"
 	"github.com/sarkartanmay393/HareKrishnaClub-Web/internal/handlers"
 	"github.com/sarkartanmay393/HareKrishnaClub-Web/internal/render"
 	"github.com/sarkartanmay393/HareKrishnaClub-Web/internal/scraper"
-	"log"
-	"net/http"
-	"os"
 )
 
 var portNumber = 8080
@@ -18,7 +19,16 @@ var app config.AppConfig
 func main() {
 
 	var err error
+	// var scrapedBlogsChan chan []scraper.Blog
+	// for {
+	// 	go func() {
+	// 		blogs, _ := scraper.ScapeIskcondesiretree()
+	// 		scrapedBlogsChan <- blogs
+	// 	}()
+
+	// }
 	scrapedBlogs, err := scraper.ScapeIskcondesiretree()
+
 	if err != nil {
 		log.Fatal("Scrape Failed", err)
 	}

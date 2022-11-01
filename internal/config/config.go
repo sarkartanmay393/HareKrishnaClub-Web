@@ -1,8 +1,9 @@
 package config
 
 import (
-	"github.com/sarkartanmay393/HareKrishnaClub-Web/internal/scraper"
 	"html/template"
+
+	"github.com/sarkartanmay393/HareKrishnaClub-Web/internal/scraper"
 )
 
 type AppConfig struct {
