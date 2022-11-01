@@ -1,0 +1,40 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+    {{ $length := len .ScrapedBlogs }}
+    {{$index := -1}}
+    <div><a>({{$length}} Results Found)</a></div>
+
+    {{range $index, $blog := .ScrapedBlogs}}
+        <div class="col">
+            <div class="row justify-content-center">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{.CoverImage}}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{.URL}}">{{.Title}}</a></h5>
+                            <p class="card-text">{{.Body}}</p>
+                            <p class="card-text"><small class="text-muted">Last updated 0 mins ago</small></p>
+                        </div>
+                     </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      {{if eq $index 10}} 
+        {{break}}
+      {{end}}
+    {{end}}
+
+    {{if lt $length $index}}
+      <div class="d-grid gap-2 col-6 mx-auto">
+          <button class="btn btn-primary" type="button">Load More</button>
+      </div>
+    {{end}}
+
+{{end}}

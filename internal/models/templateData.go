@@ -5,8 +5,9 @@ import (
 )
 
 type TemplateData struct {
-	CSRFToken      string
-	ScrapedBlogs   *[]scraper.Blog
+	CSRFToken    string
+	ScrapedBlogs *[]scraper.Blog
+
 	SuccessMessage string
 	ErrorMessage   string
 	WarningMessage string

@@ -11,7 +11,13 @@ import (
 func routes(app *config.AppConfig) http.Handler {
 	_ = app
 	mux := chi.NewRouter()
-	mux.Get("/", handlers.Repo.Home)
+
+	mux.Get("/", handlers.Repo.HomeHandler)
+	mux.Get("/blogs", handlers.Repo.BlogsHandler)
+
+	mux.Get("/poetry", handlers.Repo.PoetryHandler)
+	mux.Get("/stories", handlers.Repo.StoriesHandler)
+	mux.Get("/lord", handlers.Repo.LordHandler)
 
 	mux.Handle("/static/*", http.StripPrefix("/static", http.FileServer(http.Dir("./static"))))
 	return mux

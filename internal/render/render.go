@@ -79,13 +79,13 @@ func TemplateRender(w http.ResponseWriter, r *http.Request, tmpl string, td *mod
 
 	if app.CacheLoaded {
 		cache = app.TemplateCache
-		log.Println(app.CacheLoaded, cache)
+		// log.Println(app.CacheLoaded, cache)
 	} else {
 		cache, err = CreateTemplateCache()
 		if err != nil {
 			log.Fatal(err)
 		}
-		log.Println(app.CacheLoaded, cache)
+		// log.Println(app.CacheLoaded, cache)
 	}
 
 	t, ok := cache[tmpl]
