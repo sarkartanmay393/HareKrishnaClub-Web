@@ -8,6 +8,7 @@ type TemplateData struct {
 	CSRFToken       string
 	ScrapedBlogs    *[]scraper.Blog
 	ScrapedPoetries *[]scraper.Poetry
+	ScrapedStories  *[]scraper.Story
 
 	SuccessMessage string
 	ErrorMessage   string

@@ -23,6 +23,7 @@ func AttachConfig(a *config.AppConfig) {
 func AddDefaultData(td *models.TemplateData, r *http.Request) *models.TemplateData {
 	td.ScrapedBlogs = app.ScrapedBlogs
 	td.ScrapedPoetries = app.ScrapedPoetries
+	td.ScrapedStories = app.ScrapedStories
 	td.LoadMore = false
 
 	_ = r

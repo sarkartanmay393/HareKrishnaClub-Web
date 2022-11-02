@@ -21,7 +21,7 @@ func main() {
 	var err error
 
 	// Data from the scraped websites
-	scrapedBlogs, scrapedPoetries := ScrapeNecessaries()
+	scrapedBlogs, scrapedPoetries, scrapedStories := ScrapeNecessaries()
 
 	cache, err := render.CreateTemplateCache()
 	if err != nil {
@@ -30,6 +30,8 @@ func main() {
 
 	app.ScrapedBlogs = &scrapedBlogs
 	app.ScrapedPoetries = &scrapedPoetries
+	app.ScrapedStories = &scrapedStories
+
 	app.TemplateCache = cache
 	app.CacheLoaded = true
 	render.AttachConfig(&app)
@@ -49,7 +51,7 @@ func main() {
 }
 
 // ScrapeNecessaries scrapes the necessary data from the websites.
-func ScrapeNecessaries() ([]scraper.Blog, []scraper.Poetry) {
+func ScrapeNecessaries() ([]scraper.Blog, []scraper.Poetry, []scraper.Story) {
 	scrapedBlogs, err := scraper.ScapeIskconDesireTree()
 	if err != nil {
 		log.Fatal("scrapedBlogs Failed", err)
@@ -58,6 +60,11 @@ func ScrapeNecessaries() ([]scraper.Blog, []scraper.Poetry) {
 	if err != nil {
 		log.Fatal("scrapedPoetries Failed", err)
 	}
+	scrapedStories, err := scraper.ScrapeStoriesFromIshaFoundation()
+	fmt.Println(len(scrapedStories))
+	if err != nil {
+		log.Fatal("scrapedStories Failed", err)
+	}
 
-	return scrapedBlogs, scrapedPoetries
+	return scrapedBlogs, scrapedPoetries, scrapedStories
 }

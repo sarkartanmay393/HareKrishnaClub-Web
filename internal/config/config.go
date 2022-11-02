@@ -11,4 +11,5 @@ type AppConfig struct {
 	TemplateCache   map[string]*template.Template
 	ScrapedBlogs    *[]scraper.Blog
 	ScrapedPoetries *[]scraper.Poetry
+	ScrapedStories  *[]scraper.Story
 }

@@ -5,7 +5,7 @@
     {{ $length := len .ScrapedPoetries }}
     <p class="font-weight-light float-right text-right">({{$length}} <small class="text-muted">Results Found</small>)</p>
 
-    {{range $index, $blog := .ScrapedPoetries}}
+    {{range $index, $poetry := .ScrapedPoetries}}
         <div class="col">
             <div class="row justify-content-center">
                 <div class="card mb-3" style="max-width: 540px;">
@@ -17,7 +17,7 @@
                         <div class="card-body">
                             <h5 class="card-title"><a href="{{.URL}}">{{.Title}}</a></h5>
 
-                            <p class="card-text"><small class="text-muted">Last updated 0 mins ago</small></p>
+                            <p class="card-text"><small class="text-muted">Last updated on {{.LastUpdated.Format "2006-01-02"}}</small></p>
                         </div>
                      </div>
                     </div>
